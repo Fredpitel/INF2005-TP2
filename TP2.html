@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="TP2.css"/>
+		<script src="TP2.js"></script>
+		<title>Air Machin</title>
+	</head>
+
+	<body>
+		<header>
+			<h1>Air Machin</h1>
+		</header>
+		
+		<ul id="menu">
+			<li><a href="#">Options</a>
+				<ul>
+					<li class="options"><a href="#"><span>Informations de vol<input type="checkbox"/></span></a></li>
+				</ul>
+			</li>
+			<li><a href="#">Ville de départ</a>
+				<ul>
+					<li class="depart" index="1"><a href="#"><span>Calgary<input type="checkbox" class="checkboxDepart" index="1"/></span></a></li>
+					<li class="depart" index="5"><a href="#"><span>Montréal<input type="checkbox" class="checkboxDepart" index="5"/></span></a></li>
+					<li class="depart" index="2"><a href="#"><span>Regina<input type="checkbox" class="checkboxDepart" index="2"/></span></a></li>
+					<li class="depart" index="4"><a href="#"><span>Toronto<input type="checkbox" class="checkboxDepart" index="4"/></span></a></li>
+					<li class="depart" index="0"><a href="#"><span>Vancouver<input type="checkbox" class="checkboxDepart" index="0"/></span></a></li>
+					<li class="depart" index="3"><a href="#"><span>Winnipeg<input type="checkbox" class="checkboxDepart" index="3"/></span></a></li>
+				</ul>
+			</li>
+			<li><a href="#">Ville d'arrivée</a>
+				<ul id ="arrivee">
+					<li class="arrivee" id="choisirDepartArrivee"><a href="#"><span>Veuillez choisir une ville de départ</span></a></li>
+				</ul>
+			</li>
+			<li><a href="#">Escale(s)</a>
+				<ul>
+					<li class="escale" id="choisirDepartEscale"><a href="#"><span>Veuillez choisir une ville de départ</span></a></li>
+					<li class="escale" id="choisirArrivee"><a href="#"><span>Veuillez choisir une ville d'arrivée</span></a></li>
+					<li class="escale" id="calgaryEsc"><a href="#"><span>Calgary<input type="checkbox" class="checkbox"/></span></a></li>
+					<li class="escale" id="montrealEsc"><a href="#"><span>Montréal<input type="checkbox" class="checkbox"/></span></a></li>
+					<li class="escale" id="reginaEsc"><a href="#"><span>Regina<input type="checkbox" class="checkbox"/></span></a></li>
+					<li class="escale" id="torontoEsc"><a href="#"><span>Toronto<input type="checkbox" class="checkbox"/></span></a></li>
+					<li class="escale" id="vancouverEsc"><a href="#"><span>Vancouver<input type="checkbox" class="checkbox"/></span></a></li>
+					<li class="escale" id="winnipegEsc"><a href="#"><span>Winnipeg<input type="checkbox" class="checkbox"/></span></a></li>
+				</ul>
+			</li>
+			<li>
+				<div id="airline">
+					<span>AIR MACHIN</span><img id="logo" src="images/logo.png"/>
+				</div>
+			</li>
+		</ul>
+
+		<div id="carte">
+			<img src="images/carte.png"/>
+			<div>
+				<div>Ville de départ</div>
+				<div class="info" id="villeDeDepart"></div>
+				<div>Escale 1</div>
+				<div class="info" id="escale1"></div>
+				<div>Escale 2</div>
+				<div class="info" id="escale2"></div>
+				<div>Escale 3</div>
+				<div class="info" id="escale3"></div>
+			</div>
+		</div>
+			
+		<footer>
+			<div id="copyright">
+				© 2016 FRÉDÉRIC PITEL, FRANCIS BEAUDOIN TOUS DROITS RÉSERVÉS
+			</div>
+		</footer>
+	</body>
+</html>
