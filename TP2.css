@@ -108,7 +108,7 @@ header h1 {
 }
 
 #menu ul ul li {
-	max-height: inherit
+	max-height: inherit;
 	border: inherit;
 }
 
@@ -116,7 +116,6 @@ header h1 {
 	border: none;
 	padding: 0;
 }
-
 
 #airline {
 	padding: 0 150px 0 150px !important;
@@ -157,7 +156,7 @@ header h1 {
 	text-align: center;
 }
 
-.info {
+.info, .escale {
 	background-color: white;
 	border: 2px solid black;
 	height: 30px;
