@@ -1,5 +1,5 @@
 var aeroports = [
-	{ville: "Vancouver", l: 160, t: 435}, 
+	{ville: "Vancouver", l: 160, t: 440}, 
 	{ville: "Calgary", l: 380, t: 430}, 
 	{ville: "Regina", l: 530, t: 470}, 
 	{ville: "Winnipeg", l: 665, t: 500}, 
@@ -22,6 +22,7 @@ var escalesDisponibles = [];
 var escalesChoisies = [];
 
 var rotation = false;
+var interval;
 
 document.addEventListener("DOMContentLoaded", function () {
 	initialiserBoutons();
@@ -105,18 +106,10 @@ function notify(checkbox){
 function recommencer(){
 	depart = null;
 	arrivee = null;
+	clearInterval(interval);
 	escalesDisponibles = [];
 	escalesChoisies = [];
 	mettreVueAJour();
-}
-
-function enleverItineraire(){
-	var canvas = document.getElementById("canvas");
-	var context = canvas.getContext("2d");
-	var avion = document.getElementById("avion");
-
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	avion.style.display = "none";
 }
 
 function mettreVueAJour() {
@@ -245,6 +238,13 @@ function animerVol(){
 		avion.style.display = "block";
 
 		dessinerItineraire();
+		var itineraire = [depart];
+		for(var i = 0; i < escalesChoisies.length; i++) {
+			itineraire.push(escalesChoisies[i]);
+		}
+		itineraire.push(arrivee);
+
+		animerAvion(itineraire);
 	}
 }
 
@@ -261,4 +261,60 @@ function dessinerItineraire() {
 	}
 	context.lineTo(aeroports[arrivee].l + 45, aeroports[arrivee].t + 45);
 	context.stroke();
+}
+
+function enleverItineraire(){
+	var canvas = document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+	var avion = document.getElementById("avion");
+
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	avion.style.display = "none";
+}
+
+function animerAvion(itineraire) {
+	var i = 0;
+	var param = paramDeVol(itineraire[i], itineraire[i + 1]);
+	var posX = aeroports[itineraire[i]].l;
+	var posY = aeroports[itineraire[i]].t;
+
+	interval = setInterval(frame, 10);
+
+	function frame() {
+	    if (i === itineraire.length - 1) {
+	        clearInterval(interval);
+	    } else if(param.distanceHor < 0) {
+	    	i++;
+	    	if(i < itineraire.length - 1) {
+		    	param = paramDeVol(itineraire[i], itineraire[i + 1]);
+				posX = aeroports[itineraire[i]].l;
+				posY = aeroports[itineraire[i]].t;
+			}
+	    } else {
+	    	posX += param.deltaHor;
+	    	param.distanceHor--;
+			posY += param.deltaVer;
+	    }
+	    avion.style.left = posX + "px";
+		avion.style.top = posY + "px";
+	}
+}
+
+function paramDeVol(pointDep, pointArr) {
+	var distanceHor = Math.abs(aeroports[pointArr].l - aeroports[pointDep].l);
+	var distanceVer = aeroports[pointArr].t - aeroports[pointDep].t;
+	var deltaVer = (1 / distanceHor) * distanceVer;
+	var deltaHor = 1;
+
+	if(aeroports[pointDep].l > aeroports[pointArr].l){
+		deltaHor = -1;
+	}
+
+	var param = {
+		deltaHor: deltaHor,
+		deltaVer: deltaVer,
+		distanceHor: distanceHor
+	}
+
+	return param;
 }
