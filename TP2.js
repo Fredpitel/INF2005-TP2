@@ -1,19 +1,10 @@
 var aeroports = [
-	{ville: "Vancouver", l: 160, t: 440}, 
 	{ville: "Calgary", l: 380, t: 430}, 
+	{ville: "Montréal", l: 1230, t: 510},
 	{ville: "Regina", l: 530, t: 470}, 
-	{ville: "Winnipeg", l: 665, t: 500}, 
 	{ville: "Toronto", l: 1105, t: 610}, 
-	{ville: "Montréal", l: 1230, t: 510}
-];
-
-var aeroportsTries = [
-	{ville: "Calgary", index: 1},
-	{ville: "Montréal", index: 5},
-	{ville: "Regina", index: 2},
-	{ville: "Toronto", index: 4},
-	{ville: "Vancouver", index: 0},
-	{ville: "Winnipeg", index: 3}
+	{ville: "Vancouver", l: 160, t: 440}, 
+	{ville: "Winnipeg", l: 665, t: 500}
 ];
 
 var depart = null;
@@ -81,12 +72,11 @@ function notify(checkbox){
 			arrivee = index;
 		} else { 
 			escalesChoisies.push(index);
-			if(depart < arrivee) {
-				escalesChoisies.sort();				
+			if(aeroports[depart].l < aeroports[arrivee].l) {
+				escalesChoisies.sort(function(a, b){return aeroports[a].l-aeroports[b].l});				
 			} else {
-				escalesChoisies.sort(function(a, b){return b-a});
+				escalesChoisies.sort(function(a, b){return aeroports[b].l-aeroports[a].l});
 			}
-
 		}
 	} else {
 		if(depart === index){
@@ -126,8 +116,8 @@ function mettreDepartAJour() {
 	listeDepart.innerHTML = "";
 
 	if(depart === null){
-		for(var i = 0; i < aeroportsTries.length; i++){
-			listeDepart.innerHTML += "<li><a href=\"#\"><span>" + aeroportsTries[i].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + aeroportsTries[i].index + "\"/></span></a></li>";
+		for(var i = 0; i < aeroports.length; i++){
+			listeDepart.innerHTML += "<li><a href=\"#\"><span>" + aeroports[i].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + i + "\"/></span></a></li>";
 		}
 	} else {
 		listeDepart.innerHTML = "<li><a href=\"#\"><span>" + aeroports[depart].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + depart + "\"/></span></a></li>";
@@ -142,9 +132,9 @@ function mettreArriveeAJour() {
 	if(depart === null) {
 		listeArrivee.innerHTML = "<li><a href=\"#\"><span>Veuillez choisir une ville de départ</span></a></li>"
 	} else if(arrivee === null) {
-		for(var i = 0; i < aeroportsTries.length; i++){
-			if(aeroportsTries[i].index != depart){
-				listeArrivee.innerHTML += "<li><a href=\"#\"><span>" + aeroportsTries[i].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + aeroportsTries[i].index + "\"/></span></a></li>";
+		for(var i = 0; i < aeroports.length; i++){
+			if(i != depart){
+				listeArrivee.innerHTML += "<li><a href=\"#\"><span>" + aeroports[i].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + i + "\"/></span></a></li>";
 			}
 		}
 	} else {
@@ -175,9 +165,9 @@ function mettreEscalesAJour() {
 		 	}
 		} else {
 			for(var i = 0; i < escalesDisponibles.length; i++) {
-				for(var j = 0; j < aeroportsTries.length; j++) {
-					if(escalesDisponibles[i] === aeroportsTries[j].index){
-						listeEscale.innerHTML += "<li><a href=\"#\"><span>" + aeroportsTries[j].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + aeroportsTries[j].index + "\"/></span></a></li>";
+				for(var j = 0; j < aeroports.length; j++) {
+					if(escalesDisponibles[i] === j){
+						listeEscale.innerHTML += "<li><a href=\"#\"><span>" + aeroports[j].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + j + "\"/></span></a></li>";
 					}
 				}
 			}
@@ -186,13 +176,13 @@ function mettreEscalesAJour() {
 }
 
 function obtenirListeEscales() {
-	var debut = Math.min(parseInt(depart), parseInt(arrivee));
-	var fin = Math.max(parseInt(depart), parseInt(arrivee));
+	var debut = Math.min(aeroports[depart].l, aeroports[arrivee].l);
+	var fin = Math.max(aeroports[depart].l, aeroports[arrivee].l);
 
-	escalesDisponibles = [];
-
-	for(var i = debut + 1; i < fin; i++) {
-		escalesDisponibles.push(i);
+	for(var i = 0; i < aeroports.length; i++) {
+		if(aeroports[i].l < fin && aeroports[i].l > debut) {
+			escalesDisponibles.push(i);
+		}
 	}
 }
 
@@ -225,10 +215,10 @@ function animerVol(){
 	if(depart != null && arrivee != null){
 		var avion = document.getElementById("avion");
 
-		if(depart > arrivee && !rotation) {
+		if(aeroports[depart].l > aeroports[arrivee].l && !rotation) {
 			avion.style.transform = "rotate(" + 180 + "deg)";
 			rotation = true;
-		} else if( depart < arrivee && rotation){
+		} else if(aeroports[depart].l < aeroports[arrivee].l && rotation){
 			avion.style.transform = "none";
 			rotation = false;
 		}
