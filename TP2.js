@@ -1,4 +1,12 @@
-var aeroports = ["Vancouver", "Calgary", "Regina", "Winnipeg", "Toronto", "Montréal"];
+var aeroports = [
+	{ville: "Vancouver", l: 160, t: 435}, 
+	{ville: "Calgary", l: 380, t: 430}, 
+	{ville: "Regina", l: 530, t: 470}, 
+	{ville: "Winnipeg", l: 665, t: 500}, 
+	{ville: "Toronto", l: 1105, t: 610}, 
+	{ville: "Montréal", l: 1230, t: 510}
+];
+
 var aeroportsTries = [
 	{ville: "Calgary", index: 1},
 	{ville: "Montréal", index: 5},
@@ -13,9 +21,26 @@ var arrivee = null;
 var escalesDisponibles = [];
 var escalesChoisies = [];
 
+var rotation = false;
+
 document.addEventListener("DOMContentLoaded", function () {
+	initialiserBoutons();
 	initialiserCheckbox();
 });
+
+function initialiserBoutons() {
+	var boutondDecollage = document.getElementById("decollage");
+	var boutonRecommencer = document.getElementById("recommencer");
+
+	boutonRecommencer.addEventListener("click", function() {
+		recommencer();
+		enleverItineraire();
+	});
+
+	boutondDecollage.addEventListener("click", function() {
+		animerVol();
+	});
+}
 
 function initialiserCheckbox() {
 	var listeCheckbox = document.getElementsByClassName("checkbox");
@@ -47,6 +72,7 @@ function click() {
 function notify(checkbox){
 	var index = checkbox.getAttribute("index");
 
+	enleverItineraire();
 	if(checkbox.checked){
 		if(depart === null){
 			depart = index;
@@ -63,10 +89,7 @@ function notify(checkbox){
 		}
 	} else {
 		if(depart === index){
-			depart = null;
-			arrivee = null;
-			escalesDisponibles = [];
-			escalesChoisies = [];
+			recommencer();
 		} else if(arrivee === index){
 			arrivee = null;
 			escalesDisponibles = [];
@@ -77,6 +100,23 @@ function notify(checkbox){
 	}
 
 	mettreVueAJour();
+}
+
+function recommencer(){
+	depart = null;
+	arrivee = null;
+	escalesDisponibles = [];
+	escalesChoisies = [];
+	mettreVueAJour();
+}
+
+function enleverItineraire(){
+	var canvas = document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+	var avion = document.getElementById("avion");
+
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	avion.style.display = "none";
 }
 
 function mettreVueAJour() {
@@ -97,7 +137,7 @@ function mettreDepartAJour() {
 			listeDepart.innerHTML += "<li><a href=\"#\"><span>" + aeroportsTries[i].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + aeroportsTries[i].index + "\"/></span></a></li>";
 		}
 	} else {
-		listeDepart.innerHTML = "<li><a href=\"#\"><span>" + aeroports[depart] + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + depart + "\"/></span></a></li>";
+		listeDepart.innerHTML = "<li><a href=\"#\"><span>" + aeroports[depart].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + depart + "\"/></span></a></li>";
 	}
 }
 
@@ -115,7 +155,7 @@ function mettreArriveeAJour() {
 			}
 		}
 	} else {
-		listeArrivee.innerHTML = "<li><a href=\"#\"><span>" + aeroports[arrivee] + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + arrivee + "\"/></span></a></li>";
+		listeArrivee.innerHTML = "<li><a href=\"#\"><span>" + aeroports[arrivee].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + arrivee + "\"/></span></a></li>";
 	}
 }
 
@@ -138,7 +178,7 @@ function mettreEscalesAJour() {
 		} else if(escalesChoisies.length === 3) {
 			for(var i = 0; i < escalesChoisies.length; i++) {
 				var index = escalesChoisies[i];
-		 		listeEscale.innerHTML += "<li><a href=\"#\"><span>" + aeroports[index]+ "<input type=\"checkbox\" class=\"checkbox\" index=\"" + index + "\"/></span></a></li>";
+		 		listeEscale.innerHTML += "<li><a href=\"#\"><span>" + aeroports[index].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + index + "\"/></span></a></li>";
 		 	}
 		} else {
 			for(var i = 0; i < escalesDisponibles.length; i++) {
@@ -169,13 +209,13 @@ function mettreEtiquettesAJour() {
 	var tagsEscale = document.getElementsByClassName("escale");
 
 	if(depart != null) {
-		tagDepart.innerHTML = aeroports[depart];
+		tagDepart.innerHTML = aeroports[depart].ville;
 	} else {
 		tagDepart.innerHTML = "";
 	}
 
 	if(arrivee != null) {
-		tagArrivee.innerHTML = aeroports[arrivee];
+		tagArrivee.innerHTML = aeroports[arrivee].ville;
 	} else {
 		tagArrivee.innerHTML = "";
 	}
@@ -183,7 +223,42 @@ function mettreEtiquettesAJour() {
 	for(var i = 0; i < tagsEscale.length; i++){
 		tagsEscale[i].innerHTML = "";
 		if(escalesChoisies[i] != null) {
-			tagsEscale[i].innerHTML = aeroports[escalesChoisies[i]];
+			tagsEscale[i].innerHTML = aeroports[escalesChoisies[i]].ville;
 		}
 	}
+}
+
+function animerVol(){
+	if(depart != null && arrivee != null){
+		var avion = document.getElementById("avion");
+
+		if(depart > arrivee && !rotation) {
+			avion.style.transform = "rotate(" + 180 + "deg)";
+			rotation = true;
+		} else if( depart < arrivee && rotation){
+			avion.style.transform = "none";
+			rotation = false;
+		}
+
+		avion.style.left = aeroports[depart].l + "px";
+		avion.style.top = aeroports[depart].t + "px";
+		avion.style.display = "block";
+
+		dessinerItineraire();
+	}
+}
+
+function dessinerItineraire() {
+	var canvas = document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+
+	context.beginPath();
+	context.strokeStyle= "red";
+	context.lineWidth = 10;
+	context.moveTo(aeroports[depart].l + 45, aeroports[depart].t + 45);
+	for(var i = 0; i < escalesChoisies.length; i++){
+		context.lineTo(aeroports[escalesChoisies[i]].l + 45, aeroports[escalesChoisies[i]].t + 45);
+	}
+	context.lineTo(aeroports[arrivee].l + 45, aeroports[arrivee].t + 45);
+	context.stroke();
 }

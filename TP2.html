@@ -13,7 +13,7 @@
 		</header>
 		
 		<ul id="menu">
-			<li><a href="#">Ville de départ</a>
+			<li><a href="#">1. Ville de départ</a>
 				<ul id="depart">
 					<li><a href="#"><span>Calgary<input type="checkbox" class="checkbox" index="1"/></span></a></li>
 					<li><a href="#"><span>Montréal<input type="checkbox" class="checkbox" index="5"/></span></a></li>
@@ -23,44 +23,53 @@
 					<li><a href="#"><span>Winnipeg<input type="checkbox" class="checkbox" index="3"/></span></a></li>
 				</ul>
 			</li>
-			<li><a href="#">Ville d'arrivée</a>
+			<li><a href="#">2. Ville d'arrivée</a>
 				<ul id ="arrivee">
 					<li><a href="#"><span>Veuillez choisir une ville de départ</span></a></li>
 				</ul>
 			</li>
-			<li><a href="#">Escale(s)</a>
+			<li><a href="#">3. Escale(s)</a>
 				<ul id="escale">
 					<li><a href="#"><span>Veuillez choisir une ville de départ</span></a></li>
 				</ul>
 			</li>
 			<li><a href="#">Options</a>
 				<ul>
-					<li class="options"><a href="#"><span>Informations de vol<input type="checkbox"/></span></a></li>
+					<li><a href="#"><span>Informations de vol<input type="checkbox"/></span></a></li>
+					<li><a href="#"><span>Informations sur l'équipage<input type="checkbox"/></span></a></li>
 				</ul>
 			</li>
 			<li>
 				<div id="airline">
-					<span>AIR MACHIN</span><img id="logo" src="images/logo.png"/>
+					<input id="decollage" type="button" value="Décollage"/>
+					<input id="recommencer" type="button" value="Recommencer"/>
+					<div>AIR MACHIN</div>
+					<img id="logo" src="images/logo.png"/>
 				</div>
 			</li>
 		</ul>
 
 		<div id="carte">
-			<img src="images/carte.png"/>
-			<div>
-				<div>Ville de départ</div>
+			<div id="images">
+				<canvas id="canvas" style="top: 0; left:  0;position: absolute;" height="750px" width="1575px">
+				</canvas>
+				<img id="imageCarte" src="images/carte.png"/>
+				<img id="avion" src="images/avion.png"/>
+			</div>
+			<div id="infoVol">
+				<div class="etiquettes">Ville de départ</div>
 				<div class="info" id="villeDeDepart"></div>
-				<div>Ville d'arrivée</div>
+				<div class="etiquettes">Ville d'arrivée</div>
 				<div class="info" id="villeDArrivee"></div>
-				<div>Escale 1</div>
+				<div class="etiquettes">Escale 1</div>
 				<div class="escale" id="escale1"></div>
-				<div>Escale 2</div>
+				<div class="etiquettes">Escale 2</div>
 				<div class="escale" id="escale2"></div>
-				<div>Escale 3</div>
+				<div class="etiquettes">Escale 3</div>
 				<div class="escale" id="escale3"></div>
 			</div>
 		</div>
-			
+		
 		<footer>
 			<div id="copyright">
 				© 2016 FRÉDÉRIC PITEL, FRANCIS BEAUDOIN TOUS DROITS RÉSERVÉS

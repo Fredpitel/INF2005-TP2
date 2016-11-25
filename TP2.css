@@ -7,6 +7,7 @@ body {
 	padding: 0;
 	margin: 0;
 	height: 100%;
+	width: 100%;
 	font-family: arial, sans serif;
 	background-color: lightblue;
 }
@@ -15,8 +16,7 @@ header {
 	height: 75px;
 	width: 100%;
 	text-align: center;
-	background-color: #000;
-	opacity: 0.40;
+    background-color: #212121;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -24,12 +24,13 @@ header {
 
 header h1 {
 	opacity: 1;
-	color: #FFF;
+	color: #999;
 }
 
 #menu {
 	margin-left: 80px;
-	margin-top: 40px;
+	z-index: 10;
+	position: absolute;
 }
 
 #menu ul {
@@ -71,7 +72,6 @@ header h1 {
 
 #menu ul {
 	position: absolute;
-	z-index: 10;
 	min-width: 100%;
 }
 
@@ -84,6 +84,7 @@ header h1 {
 	margin: 0;
 	border: inherit;
 	background-color:inherit;
+	text-align: center;
 }
 
 #menu ul li a {
@@ -103,8 +104,8 @@ header h1 {
 }
 
 #menu ul li:hover ul {
-  overflow: visible;
-  max-height: 30em;
+  	overflow: visible;
+    max-height: 30em;
 }
 
 #menu ul ul li {
@@ -117,62 +118,102 @@ header h1 {
 	padding: 0;
 }
 
-#airline {
-	padding: 0 150px 0 150px !important;
-	cursor: default  !important;
-	width: 100%;
-	text-align: right;
+input[type=checkbox] {
+	transform: scale(1.5);
+	margin-left: 15px;
 }
 
-#airline > span {
-	float: left;
-	padding: 15px 40px;
+#airline {
+	padding: 0 150px 0 0 !important;
+	cursor: default  !important;
+}
+
+#airline input, #airline div, #airline img {
+	display: inline-block;
+	vertical-align: top;
+}
+
+#airline div {
+	margin-top: 17px;
+}
+
+#airline input {
+	margin-top: 12px;
+	font-size: 20px;
+}
+
+#decollage {
+	margin-left: 50px;
+	margin-right: 10px;
+}
+
+#recommencer, #airline div {
+	margin-right: 100px;
 }
 
 #logo {
-	height: 47px;
+	height: 52.5px;
 }
 
 #carte {
-	position: absolute;
-	top: 200px;
-	width: 1200px;
-	padding-left: 15%;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
-#carte img {
+#images {
+	display: inline-block;
+}
+
+#imageCarte {
 	height: 750px;
-	float: left;
+	width: 1575px;
+	position: absolute;
+	top: 0;
+	left: 80px;
+	z-index: -5;
 }
 
-#carte > div {
+
+#infoVol {
+	position: relative;
 	float: right;
-	vertical-align: middle;
-	padding-top: 250px;
-}
-
-#carte div {
+	z-index: 15;
+	top: 260px;
+	right: 350px;
 	font-weight: bold;
 	text-align: center;
+	font-size: 24px;
+}
+
+
+.etiquettes {
+	color: lightgray;
+    text-shadow:-3px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .info, .escale {
 	background-color: white;
-	border: 2px solid black;
-	height: 30px;
+	border: 3px solid black;
+	height: 40px;
+	padding-top: 7px;
 	margin-bottom: 10px;
 }
 
+#avion {
+	position: absolute;
+	z-index: 15;
+	display: none;
+}
+
 footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
     height: 50px;
     width: 100%;
     background: #212121;
     display: table;
     text-align: center; 
-    position: absolute;
-	left: 0;
-	bottom: 0;
-	clear: both;
 	color: #999;
 }
 
