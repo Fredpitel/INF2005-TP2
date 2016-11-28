@@ -208,6 +208,14 @@ input[type=checkbox] {
 	display: none;
 }
 
+#boxInfoVol {
+	background: fff;
+	position: absolute;
+	z-index: 16;
+	//display: none;
+	white-space: nowrap;
+}
+
 footer {
 	position: fixed;
 	bottom: 0;

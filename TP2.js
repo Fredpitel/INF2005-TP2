@@ -214,6 +214,7 @@ function mettreEtiquettesAJour() {
 function animerVol(){
 	if(depart != null && arrivee != null){
 		var avion = document.getElementById("avion");
+		var boxInfoVol = document.getElementById("boxInfoVol");
 
 		if(aeroports[depart].l > aeroports[arrivee].l && !rotation) {
 			avion.style.transform = "rotate(" + 180 + "deg)";
@@ -226,6 +227,9 @@ function animerVol(){
 		avion.style.left = aeroports[depart].l + "px";
 		avion.style.top = aeroports[depart].t + "px";
 		avion.style.display = "block";
+		
+		boxInfoVol.style.left = aeroports[depart].l + "px";
+		boxInfoVol.style.top = aeroports[depart].t - 60 + "px";
 
 		dessinerItineraire();
 		var itineraire = [depart];
@@ -241,6 +245,13 @@ function animerVol(){
 function dessinerItineraire() {
 	var canvas = document.getElementById("canvas");
 	var context = canvas.getContext("2d");
+	
+	var infoDepart = document.getElementById("infoDepart");
+	infoDepart.innerHTML= aeroports[depart].ville;
+	
+	var infoArrivee = document.getElementById("infoArrivee");
+	infoArrivee.innerHTML = aeroports[arrivee].ville;
+	
 
 	context.beginPath();
 	context.strokeStyle= "red";
@@ -257,9 +268,20 @@ function enleverItineraire(){
 	var canvas = document.getElementById("canvas");
 	var context = canvas.getContext("2d");
 	var avion = document.getElementById("avion");
+	var boxInfoVol = document.getElementById("boxInfoVol");
+	
+	var infoDepart = document.getElementById("infoDepart");
+	infoDepart.innerHTML= " - ";
+	
+	var infoArrivee = document.getElementById("infoArrivee");
+	infoArrivee.innerHTML = " - ";
+	
+	var infoProchaineVille = document.getElementById("infoProchaineVille");
+	infoProchaineVille.innerHTML = " - "
 
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	avion.style.display = "none";
+	//boxInfoVol.style.display = "none";
 }
 
 function animerAvion(itineraire) {
@@ -267,6 +289,9 @@ function animerAvion(itineraire) {
 	var param = paramDeVol(itineraire[i], itineraire[i + 1]);
 	var posX = aeroports[itineraire[i]].l;
 	var posY = aeroports[itineraire[i]].t;
+	
+	var infoProchaineVille = document.getElementById("infoProchaineVille");
+	infoProchaineVille.innerHTML = aeroports[itineraire[i+1]].ville;
 
 	interval = setInterval(frame, 10);
 
@@ -279,6 +304,7 @@ function animerAvion(itineraire) {
 		    	param = paramDeVol(itineraire[i], itineraire[i + 1]);
 				posX = aeroports[itineraire[i]].l;
 				posY = aeroports[itineraire[i]].t;
+				infoProchaineVille.innerHTML = aeroports[itineraire[i+1]].ville;
 			}
 	    } else {
 	    	posX += param.deltaHor;
@@ -287,6 +313,9 @@ function animerAvion(itineraire) {
 	    }
 	    avion.style.left = posX + "px";
 		avion.style.top = posY + "px";
+		
+		boxInfoVol.style.left = posX + "px";
+		boxInfoVol.style.top = posY - 60 + "px";
 	}
 }
 
