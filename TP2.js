@@ -252,6 +252,7 @@ function animerVol(){
 		avion.style.left = aeroports[depart].l + "px";
 		avion.style.top = aeroports[depart].t + "px";
 		avion.style.display = "block";
+		boxInfoVol.style.display = "block";
 		
 		boxInfoVol.style.left = aeroports[depart].l + "px";
 		boxInfoVol.style.top = aeroports[depart].t - 60 + "px";
@@ -306,7 +307,7 @@ function enleverItineraire(){
 
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	avion.style.display = "none";
-	//boxInfoVol.style.display = "none";
+	boxInfoVol.style.display = "none";
 }
 
 function animerAvion(itineraire) {
@@ -319,6 +320,7 @@ function animerAvion(itineraire) {
 	infoProchaineVille.innerHTML = aeroports[itineraire[i+1]].ville;
 	
 	var tempsRestant = Math.abs(aeroports[depart].l - aeroports[arrivee].l) -1;
+	var vitesse = 0;
 
 	interval = setInterval(frame, 20);
 
@@ -337,6 +339,7 @@ function animerAvion(itineraire) {
 			param.distanceHor--;
 
 			calculerTempsRestantBoxInfoVol();
+			calculerVitesse();
 			
 			avion.style.left = posX + "px";
 			avion.style.top = posY + "px";
@@ -357,6 +360,38 @@ function animerAvion(itineraire) {
 		}
 		tempsRestant--;
 		
+	}
+	
+	function calculerVitesse() {
+		var infoVitesse = document.getElementById("infoVitesse");
+		
+		if (param.distanceHor < 14) {
+			vitesse -= 60;
+			if (vitesse < 0 ) {
+				vitesse = 0;
+			}
+		}
+		else {
+			if (vitesse < 825) {
+				vitesse += 60;
+			}
+			
+			if(vitesse > 830) {
+				vitesse = 827;
+			}
+			
+			if (tempsRestant % 100 === 33){
+				vitesse += 1;
+			}
+			else if (tempsRestant % 100 === 66) {
+				vitesse -= 2;
+			}
+			else if (tempsRestant % 100 === 99) {
+				vitesse += 2;
+			}
+		}
+		
+		infoVitesse.innerHTML = vitesse + " km/h";
 	}
 }
 

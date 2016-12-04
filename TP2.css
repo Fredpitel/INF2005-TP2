@@ -212,7 +212,7 @@ input[type=checkbox] {
 	background: rgba(255,255,255,0.5);
 	position: absolute;
 	z-index: 16;
-	//display: none;
+	display: none;
 	white-space: nowrap;
 }
 
