@@ -12,12 +12,17 @@ var arrivee = null;
 var escalesDisponibles = [];
 var escalesChoisies = [];
 
+var horlogeHeures = 0;
+var horlogeMinutes = 0;
+var horloge
+
 var rotation = false;
 var interval;
 
 document.addEventListener("DOMContentLoaded", function () {
 	initialiserBoutons();
 	initialiserCheckbox();
+	initialiserHeure();
 });
 
 function initialiserBoutons() {
@@ -55,6 +60,26 @@ function initialiserCheckbox() {
 			}
 		}
 	}
+}
+
+function initialiserHeure() {
+	horlogeHeure = 0;
+	horlogeMinute = 0;
+	horloge = setInterval(avancerHeure, 400);
+}
+
+function avancerHeure() {
+	horlogeMinutes += 5;
+	if (horlogeMinutes >= 60) {
+		horlogeMinutes = 0;
+		horlogeHeures ++;
+		if (horlogeHeures > 23) {
+			horlogeHeures = 0;
+		}
+	}
+	var monHorloge = document.getElementById("horloge");
+	monHorloge.innerHTML = formaterHeure(horlogeHeures, horlogeMinutes);
+
 }
 
 function click() {
@@ -292,31 +317,66 @@ function animerAvion(itineraire) {
 	
 	var infoProchaineVille = document.getElementById("infoProchaineVille");
 	infoProchaineVille.innerHTML = aeroports[itineraire[i+1]].ville;
+	
+	var tempsRestant = Math.abs(aeroports[depart].l - aeroports[arrivee].l) -1;
 
-	interval = setInterval(frame, 10);
+	interval = setInterval(frame, 20);
 
 	function frame() {
 	    if (i === itineraire.length - 1) {
 	        clearInterval(interval);
-	    } else if(param.distanceHor < 0) {
+	    } else if(param.distanceHor <= 0) {
 	    	i++;
 	    	if(i < itineraire.length - 1) {
 		    	param = paramDeVol(itineraire[i], itineraire[i + 1]);
-				posX = aeroports[itineraire[i]].l;
-				posY = aeroports[itineraire[i]].t;
 				infoProchaineVille.innerHTML = aeroports[itineraire[i+1]].ville;
 			}
 	    } else {
 	    	posX += param.deltaHor;
-	    	param.distanceHor--;
 			posY += param.deltaVer;
-	    }
-	    avion.style.left = posX + "px";
-		avion.style.top = posY + "px";
-		
-		boxInfoVol.style.left = posX + "px";
-		boxInfoVol.style.top = posY - 60 + "px";
+			param.distanceHor--;
+
+			calculerTempsRestantBoxInfoVol();
+			
+			avion.style.left = posX + "px";
+			avion.style.top = posY + "px";
+			
+			boxInfoVol.style.left = posX + "px";
+			boxInfoVol.style.top = posY - 45 + "px"; 
+		}
 	}
+	
+	function calculerTempsRestantBoxInfoVol() {
+		if (tempsRestant % 20 === 0) {
+			var infoTempsRestant = document.getElementById("infoTempsRestant");
+			var minutes = tempsRestant / 20 * 5;
+			var heures = (minutes / 60) >> 0;
+			minutes = minutes % 60;
+			
+			infoTempsRestant.innerHTML = formaterHeure(heures, minutes);;
+		}
+		tempsRestant--;
+		
+	}
+}
+
+function formaterHeure(heures, minutes) {
+	var strTemps = "";
+			
+	if (heures < 10){
+		strTemps = strTemps.concat("0" + heures + "h");
+	}
+	else {
+		strTemps = strTemps.concat(heures + "h");
+	}
+	
+	if (minutes < 10) {
+		strTemps = strTemps.concat("0" + minutes);
+	}
+	else {
+		strTemps = strTemps.concat(minutes);
+	}
+	return strTemps;
 }
 
 function paramDeVol(pointDep, pointArr) {
