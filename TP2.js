@@ -237,8 +237,11 @@ function mettreEtiquettesAJour() {
 }
 
 function animerVol(){
+	var avion = document.getElementById("avion");
+	avion.style.display = "none"
+	clearInterval(interval);
+
 	if(depart != null && arrivee != null){
-		var avion = document.getElementById("avion");
 		var boxInfoVol = document.getElementById("boxInfoVol");
 
 		if(aeroports[depart].l > aeroports[arrivee].l && !rotation) {
