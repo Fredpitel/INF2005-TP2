@@ -18,7 +18,7 @@ var horloge
 
 var rotation = false;
 var interval;
-var vole = false;
+var vol = false;
 
 document.addEventListener("DOMContentLoaded", function () {
 	initialiserBoutons();
@@ -259,7 +259,6 @@ function animerVol(){
 	var avion = document.getElementById("avion");
 	avion.style.display = "none";
 	clearInterval(interval);
-	vol = false;
 
 	if(depart != null && arrivee != null){
 		vol = true;
@@ -292,6 +291,8 @@ function animerVol(){
 		itineraire.push(arrivee);
 
 		animerAvion(itineraire);
+	} else {
+		alert("Veuillez choisir une ville de départ et une ville d'arrivée.")
 	}
 }
 
