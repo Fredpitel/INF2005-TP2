@@ -1,7 +1,7 @@
 var aeroports = [
-	{ville: "Calgary", l: 375, t: 380}, 
+	{ville: "Calgary", l: 380, t: 380}, 
 	{ville: "Montréal", l: 1230, t: 510},
-	{ville: "Regina", l: 540, t: 420}, 
+	{ville: "Regina", l: 545, t: 420}, 
 	{ville: "Toronto", l: 1105, t: 610}, 
 	{ville: "Vancouver", l: 160, t: 440}, 
 	{ville: "Winnipeg", l: 665, t: 500}
@@ -292,7 +292,7 @@ function animerVol(){
 
 		animerAvion(itineraire);
 	} else {
-		alert("Veuillez choisir une ville de départ et une ville d'arrivée.")
+		alert("Veuillez choisir une ville de départ et une ville d'arrivée.");
 	}
 }
 
