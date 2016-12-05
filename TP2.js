@@ -18,10 +18,12 @@ var horloge
 
 var rotation = false;
 var interval;
+var vole = false;
 
 document.addEventListener("DOMContentLoaded", function () {
 	initialiserBoutons();
 	initialiserCheckbox();
+	initialiserOptions();
 	initialiserHeure();
 });
 
@@ -60,6 +62,22 @@ function initialiserCheckbox() {
 			}
 		}
 	}
+}
+
+function initialiserOptions() {
+	var optionInfoVol = document.getElementById("optionInfoVol");
+	var optionEquipage = document.getElementById("optionEquipage");
+	var boxInfoVol = document.getElementById("boxInfoVol");
+
+	optionInfoVol.addEventListener("click", function() {
+		if(optionInfoVol.checked && vol === true) {
+			boxInfoVol.style.display = "inherit";
+		} else {
+			boxInfoVol.style.display = "none";
+		}
+	});
+
+	//TODO optionEquipage
 }
 
 function initialiserHeure() {
@@ -121,6 +139,7 @@ function notify(checkbox){
 function recommencer(){
 	depart = null;
 	arrivee = null;
+	vol = false;
 	clearInterval(interval);
 	escalesDisponibles = [];
 	escalesChoisies = [];
@@ -240,9 +259,12 @@ function animerVol(){
 	var avion = document.getElementById("avion");
 	avion.style.display = "none";
 	clearInterval(interval);
+	vol = false;
 
 	if(depart != null && arrivee != null){
+		vol = true;
 		var boxInfoVol = document.getElementById("boxInfoVol");
+		var optionInfoVol = document.getElementById("optionInfoVol");
 
 		if(aeroports[depart].l > aeroports[arrivee].l && !rotation) {
 			avion.style.transform = "rotate(" + 180 + "deg)";
@@ -255,7 +277,9 @@ function animerVol(){
 		avion.style.left = aeroports[depart].l + "px";
 		avion.style.top = aeroports[depart].t + "px";
 		avion.style.display = "block";
-		boxInfoVol.style.display = "block";
+		if(optionInfoVol.checked) {
+			boxInfoVol.style.display = "block";
+		}
 		
 		boxInfoVol.style.left = aeroports[depart].l + "px";
 		boxInfoVol.style.top = aeroports[depart].t - 60 + "px";
