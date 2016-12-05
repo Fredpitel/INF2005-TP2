@@ -1,7 +1,7 @@
 var aeroports = [
-	{ville: "Calgary", l: 380, t: 430}, 
+	{ville: "Calgary", l: 375, t: 380}, 
 	{ville: "Montréal", l: 1230, t: 510},
-	{ville: "Regina", l: 530, t: 470}, 
+	{ville: "Regina", l: 540, t: 420}, 
 	{ville: "Toronto", l: 1105, t: 610}, 
 	{ville: "Vancouver", l: 160, t: 440}, 
 	{ville: "Winnipeg", l: 665, t: 500}
@@ -238,7 +238,7 @@ function mettreEtiquettesAJour() {
 
 function animerVol(){
 	var avion = document.getElementById("avion");
-	avion.style.display = "none"
+	avion.style.display = "none";
 	clearInterval(interval);
 
 	if(depart != null && arrivee != null){
