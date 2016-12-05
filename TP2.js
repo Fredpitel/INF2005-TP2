@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function initialiserBoutons() {
 	var boutondDecollage = document.getElementById("decollage");
 	var boutonRecommencer = document.getElementById("recommencer");
+	var avionImage = document.getElementById("avion");
 
 	boutonRecommencer.addEventListener("click", function() {
 		recommencer();
@@ -38,6 +39,10 @@ function initialiserBoutons() {
 
 	boutondDecollage.addEventListener("click", function() {
 		animerVol();
+	});
+	
+	avionImage.addEventListener("click", function() {
+		avionPopUp();
 	});
 }
 
@@ -134,6 +139,10 @@ function notify(checkbox){
 	}
 
 	mettreVueAJour();
+}
+
+function avionPopUp() {
+	window.open("popUpAvion.html", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, width=960, height=600");
 }
 
 function recommencer(){
