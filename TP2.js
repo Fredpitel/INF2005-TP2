@@ -1,5 +1,6 @@
 var aeroports = [
-	{ville: "Calgary", l: 380, t: 380}, 
+	{ville: "Calgary", l: 380, t: 380},
+	{ville: "Halifax", l: 1440, t: 450},
 	{ville: "Montréal", l: 1230, t: 510},
 	{ville: "Regina", l: 545, t: 420}, 
 	{ville: "Toronto", l: 1105, t: 610}, 

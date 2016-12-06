@@ -176,12 +176,11 @@ input[type=checkbox] {
 
 
 #infoVol {
-	position: relative;
-	float: right;
+	position: absolute;
 	z-index: 15;
-	top: 200px;
-	right: 350px;
-	left: 1500px;
+	top: 150px;
+	left: 1650px;
+	width: 150px;
 	font-weight: bold;
 	text-align: center;
 	font-size: 24px;
