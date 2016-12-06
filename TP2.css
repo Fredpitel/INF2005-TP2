@@ -217,6 +217,65 @@ input[type=checkbox] {
 	white-space: nowrap;
 }
 
+#equipage {
+	background: #A0A0A0;
+	height: 180px;
+	width: 700px;
+	margin: 620px 0px 90px 80px;
+	position: absolute;
+	overflow: hidden;
+}
+
+.precedent, .suivant {
+	margin: 0;
+	padding: 0;
+	height: 180px;
+	font-size: 200%;
+	width: 45px;
+	background:#555555;
+	text-align: center;
+	line-height: 170px;
+	position: absolute;
+	cursor: pointer;
+}
+
+.precedent:hover, .suivant:hover {
+	background:#777777;
+	font-size: 250%;
+}
+
+.precedent {
+	top: 0;
+	left: 0;
+}
+
+.suivant {
+	top: 0;
+	right: 0;
+}
+
+.fenetre {
+	width: 3840px;
+	height: 180px;
+	margin: 0px 45px 0px 45px;
+	//position: relative;
+}
+
+.fenetre a {
+	display: block;
+	float: left;
+	padding: 0 5px;
+}
+
+.fenetre img {
+	height: 150px;
+	border: solid 2px #333;
+}
+
+.fenetre a:hover img, a.courant img{
+	border: solid 3px #000;
+}
+
 .flottante {
 	border: solid 3px;
 	margin: 30px;

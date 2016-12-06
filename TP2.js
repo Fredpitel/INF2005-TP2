@@ -73,6 +73,7 @@ function initialiserOptions() {
 	var optionInfoVol = document.getElementById("optionInfoVol");
 	var optionEquipage = document.getElementById("optionEquipage");
 	var boxInfoVol = document.getElementById("boxInfoVol");
+	var equipage = document.getElementById("equipage");
 
 	optionInfoVol.addEventListener("click", function() {
 		if(optionInfoVol.checked && vol === true) {
@@ -82,7 +83,13 @@ function initialiserOptions() {
 		}
 	});
 
-	//TODO optionEquipage
+	optionEquipage.addEventListener("click", function() {
+		if(optionEquipage.checked) {
+			equipage.style.display = "inherit";
+		} else {
+			equipage.style.display = "none";
+		}
+	})
 }
 
 function initialiserHeure() {
@@ -469,3 +476,17 @@ function paramDeVol(pointDep, pointArr) {
 
 	return param;
 }
+
+/*
+ * function pour la fenêtre coulissante
+ */
+ $(document).ready(function() {
+ 	s = new fenetre("#equipage");
+ });
+
+ var fenetre = function(maFenetre) {
+ 	this.div = $(maFenetre);
+ 	this.precedent = this.div.find(".precedent");
+ 	this.suivant = this.div.find(".suivant");
+ 	// TODO  : animation
+ }
