@@ -219,12 +219,13 @@ input[type=checkbox] {
 #equipage {
 	background: #DDDDFF;
 	height: 180px;
-	width: 700px;
+	width: 716px;
 	margin: 600px 0px 90px 80px;
 	position: relative;
+	//overflow: hidden;
 }
 
-.precedent, .suivant {
+#precedent, #suivant {
 	background:#555555;
 	margin: 0;
 	padding: 0;
@@ -235,37 +236,39 @@ input[type=checkbox] {
 	line-height: 180px;
 	position: absolute;
 	cursor: pointer;
+	z-index: 100;
 }
 
-.precedent:hover, .suivant:hover {
+#precedent:hover, #suivant:hover {
 	background:#777777;
 	font-size: 250%;
 }
 
-.precedent {
+#precedent {
 	top: 0;
 	left: 0;
 }
 
-.suivant {
+#suivant {
 	top: 0;
 	right: 0;
 }
 
-.fenetre {
+#fenetre {
 	width: 3840px;
 	height: 180px;
+	position: relative;
+	left: 50px;
+	transition: 1.0s all
 }
 
-.fenetre img {
+#fenetre img {
 	max-height: 150px;
 	width: 150px;
-
 }
 
 .membre {
 	float: left;
-	//padding: 0 2px;
 	width: 150px;
 	height: 176px;
 	text-align: center;

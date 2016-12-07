@@ -32,6 +32,8 @@ function initialiserBoutons() {
 	var boutondDecollage = document.getElementById("decollage");
 	var boutonRecommencer = document.getElementById("recommencer");
 	var avionImage = document.getElementById("avion");
+	var precedent = document.getElementById("precedent");
+	var suivant = document.getElementById("suivant");
 
 	boutonRecommencer.addEventListener("click", function() {
 		recommencer();
@@ -44,6 +46,14 @@ function initialiserBoutons() {
 	
 	avionImage.addEventListener("click", function() {
 		avionPopUp();
+	});
+
+	precedent.addEventListener("click", function() {
+		fenetrePrecedent();
+	});
+
+	suivant.addEventListener("click", function() {
+		fenetreSuivant();
 	});
 }
 
@@ -481,13 +491,29 @@ function paramDeVol(pointDep, pointArr) {
 /*
  * function pour la fenêtre coulissante
  */
- $(document).ready(function() {
- 	s = new fenetre("#equipage");
- });
+ var fenetrePositionMin = -566;
+ var fenetrePositionMax = 50;
+ var fenetrePositionCourante = 50;
 
- var fenetre = function(maFenetre) {
- 	this.div = $(maFenetre);
- 	this.precedent = this.div.find(".precedent");
- 	this.suivant = this.div.find(".suivant");
- 	// TODO  : animation
- }
+function fenetrePrecedent() {
+	if (fenetrePositionCourante - 154 <= fenetrePositionMin) {
+		fenetrePositionCourante = fenetrePositionMin;
+	} else {
+		fenetrePositionCourante -= 154;
+	}
+	deplacerFenetre();
+}
+
+function fenetreSuivant() {
+	if (fenetrePositionCourante + 154 >= fenetrePositionMax) {
+		fenetrePositionCourante = fenetrePositionMax;
+	} else {
+		fenetrePositionCourante += 154;
+	}
+	deplacerFenetre();
+}
+
+function deplacerFenetre() {
+	var fenetre = document.getElementById("fenetre");
+	fenetre.style.left = fenetrePositionCourante + "px";
+}
