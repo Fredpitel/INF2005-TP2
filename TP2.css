@@ -222,11 +222,10 @@ input[type=checkbox] {
 	width: 716px;
 	margin: 600px 0px 90px 80px;
 	position: relative;
-	//overflow: hidden;
+	overflow: hidden;
 }
 
 #precedent, #suivant {
-	background:#555555;
 	margin: 0;
 	padding: 0;
 	height: 180px;
@@ -240,18 +239,19 @@ input[type=checkbox] {
 }
 
 #precedent:hover, #suivant:hover {
-	background:#777777;
-	font-size: 250%;
+	font-size: 275%;
 }
 
 #precedent {
 	top: 0;
 	left: 0;
+	background: #777777;
 }
 
 #suivant {
 	top: 0;
 	right: 0;
+	background:#555555;
 }
 
 #fenetre {
@@ -263,7 +263,7 @@ input[type=checkbox] {
 }
 
 #fenetre img {
-	max-height: 150px;
+	height: 150px;
 	width: 150px;
 }
 
@@ -277,6 +277,7 @@ input[type=checkbox] {
 
 .nom {
 	display: block;
+	font-size: 12px;
 }
 
 

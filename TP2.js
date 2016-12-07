@@ -491,15 +491,26 @@ function paramDeVol(pointDep, pointArr) {
 /*
  * function pour la fenêtre coulissante
  */
- var fenetrePositionMin = -566;
+ var fenetrePositionMin = -1182;
  var fenetrePositionMax = 50;
  var fenetrePositionCourante = 50;
 
 function fenetreSuivant() {
 	if (fenetrePositionCourante - 154 <= fenetrePositionMin) {
 		fenetrePositionCourante = fenetrePositionMin;
+
+		// on a atteint le point minimal, on ne peut plus aller plus loin
+		var suivant = document.getElementById("suivant");
+		suivant.innerHTML = "";
+		suivant.style.background = "#777777";
+
 	} else {
 		fenetrePositionCourante -= 154;
+
+		// on a au moins une image suivante
+		var precedent = document.getElementById("precedent");
+		precedent.innerHTML = "&#x25C0";
+		precedent.style.background = "#555555";
 	}
 	deplacerFenetre();
 }
@@ -507,8 +518,19 @@ function fenetreSuivant() {
 function fenetrePrecedent() {
 	if (fenetrePositionCourante + 154 >= fenetrePositionMax) {
 		fenetrePositionCourante = fenetrePositionMax;
+
+		// on a atteint le point maximal, on ne peut plus aller plus loin
+		var precedent = document.getElementById("precedent");
+		precedent.innerHTML = "";
+		precedent.style.background = "#777777";
+
 	} else {
 		fenetrePositionCourante += 154;
+
+		// on a au moins une image suivante
+		var suivant = document.getElementById("suivant");
+		suivant.innerHTML = "&#x25B6";
+		suivant.style.background = "#555555";
 	}
 	deplacerFenetre();
 }
