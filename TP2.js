@@ -193,10 +193,10 @@ function mettreDepartAJour() {
 
 	if(depart === null){
 		for(var i = 0; i < aeroports.length; i++){
-			listeDepart.innerHTML += "<li><a href=\"#\"><span>" + aeroports[i].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + i + "\"/></span></a></li>";
+			listeDepart.innerHTML += "<li><span>" + aeroports[i].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + i + "\"/></span></li>";
 		}
 	} else {
-		listeDepart.innerHTML = "<li><a href=\"#\"><span>" + aeroports[depart].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + depart + "\"/></span></a></li>";
+		listeDepart.innerHTML = "<li><span>" + aeroports[depart].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + depart + "\"/></span></li>";
 	}
 }
 
@@ -206,15 +206,15 @@ function mettreArriveeAJour() {
 	listeArrivee.innerHTML = "";
 	
 	if(depart === null) {
-		listeArrivee.innerHTML = "<li><a href=\"#\"><span>Veuillez choisir une ville de départ</span></a></li>"
+		listeArrivee.innerHTML = "<li><span>Veuillez choisir une ville de départ</span></li>"
 	} else if(arrivee === null) {
 		for(var i = 0; i < aeroports.length; i++){
 			if(i != depart){
-				listeArrivee.innerHTML += "<li><a href=\"#\"><span>" + aeroports[i].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + i + "\"/></span></a></li>";
+				listeArrivee.innerHTML += "<li><span>" + aeroports[i].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + i + "\"/></span></li>";
 			}
 		}
 	} else {
-		listeArrivee.innerHTML = "<li><a href=\"#\"><span>" + aeroports[arrivee].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + arrivee + "\"/></span></a></li>";
+		listeArrivee.innerHTML = "<li><span>" + aeroports[arrivee].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + arrivee + "\"/></span></li>";
 	}
 }
 
@@ -224,26 +224,26 @@ function mettreEscalesAJour() {
 	listeEscale.innerHTML = "";
 
 	if(depart === null) {
-		listeEscale.innerHTML = "<li><a href=\"#\"><span>Veuillez choisir une ville de départ</span></a></li>"
+		listeEscale.innerHTML = "<li><span>Veuillez choisir une ville de départ</span></li>"
 	} else if(arrivee === null) {
-		listeEscale.innerHTML = "<li><a href=\"#\"><span>Veuillez choisir une ville d'arrivée</span></a></li>"
+		listeEscale.innerHTML = "<li><span>Veuillez choisir une ville d'arrivée</span></li>"
 	} else {
 	 	if(escalesChoisies.length === 0){
 			obtenirListeEscales();	
 		}
 
 		if(escalesDisponibles.length === 0) {
-			listeEscale.innerHTML = "<li><a href=\"#\"><span>Aucune escale disponible pour ce vol</span></a></li>";
+			listeEscale.innerHTML = "<li><span>Aucune escale disponible pour ce vol</span></li>";
 		} else if(escalesChoisies.length === 3) {
 			for(var i = 0; i < escalesChoisies.length; i++) {
 				var index = escalesChoisies[i];
-		 		listeEscale.innerHTML += "<li><a href=\"#\"><span>" + aeroports[index].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + index + "\"/></span></a></li>";
+		 		listeEscale.innerHTML += "<li><span>" + aeroports[index].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + index + "\"/></span></li>";
 		 	}
 		} else {
 			for(var i = 0; i < escalesDisponibles.length; i++) {
 				for(var j = 0; j < aeroports.length; j++) {
 					if(escalesDisponibles[i] === j){
-						listeEscale.innerHTML += "<li><a href=\"#\"><span>" + aeroports[j].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + j + "\"/></span></a></li>";
+						listeEscale.innerHTML += "<li><span>" + aeroports[j].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + j + "\"/></span></li>";
 					}
 				}
 			}

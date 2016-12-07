@@ -46,7 +46,7 @@ header h1 {
 	vertical-align: top;
 }
 
-#menu a, #airline {
+#menu span, #airline {
 	display: block;
 	padding: 15px 40px;
 	text-decoration: none;
@@ -55,17 +55,17 @@ header h1 {
 	border: solid 1px;
 }
 
-#menu > li:hover > a {
+#menu > li:hover > span {
 	background-color: #000;
 	transition: 0.4s all
 }
 
-#menu ul > li:hover > a {
+#menu ul > li:hover > span {
 	background-color: #000;
 	transition: 0.4s all
 }
 
-#menu > li > a, #airline {
+#menu > li > span, #airline {
 	color: #EEE;
 	font-size: 125%
 }
