@@ -6,8 +6,7 @@ Frédéric Pitel, PITF16088608
 <html>
 	<head>
 		<meta charset="utf-8"/>
-		<link rel="stylesheet" href="TP2.css"/>
-		<script src="jquery-3.1.1.min.js"></script> 
+		<link rel="stylesheet" href="TP2.css"/> 
 		<script src="TP2.js"></script>
 		<title>Air Machin</title>
 	</head>
@@ -20,13 +19,13 @@ Frédéric Pitel, PITF16088608
 		<ul id="menu">
 			<li><span>1. Ville de départ</span>
 				<ul id="depart">
-					<li><span>Calgary<input type="checkbox" class="checkbox" index="0"/></span></li>
-					<li><span>Halifax<input type="checkbox" class="checkbox" index="1"/></span></li>
-					<li><span>Montréal<input type="checkbox" class="checkbox" index="2"/></span></li>
-					<li><span>Regina<input type="checkbox" class="checkbox" index="3"/></span></li>
-					<li><span>Toronto<input type="checkbox" class="checkbox" index="4"/></span></li>
-					<li><span>Vancouver<input type="checkbox" class="checkbox" index="5"/></span></li>
-					<li><span>Winnipeg<input type="checkbox" class="checkbox" index="6"/></span></li>
+					<li><span>Calgary<input type="checkbox" class="checkbox" data-index="0"/></span></li>
+					<li><span>Halifax<input type="checkbox" class="checkbox" data-index="1"/></span></li>
+					<li><span>Montréal<input type="checkbox" class="checkbox" data-index="2"/></span></li>
+					<li><span>Regina<input type="checkbox" class="checkbox" data-index="3"/></span></li>
+					<li><span>Toronto<input type="checkbox" class="checkbox" data-index="4"/></span></li>
+					<li><span>Vancouver<input type="checkbox" class="checkbox" data-index="5"/></span></li>
+					<li><span>Winnipeg<input type="checkbox" class="checkbox" data-index="6"/></span></li>
 				</ul>
 			</li>
 			<li><span>2. Ville d'arrivée</span>
@@ -57,10 +56,10 @@ Frédéric Pitel, PITF16088608
 
 		<div id="carte">
 			<div id="images">
-				<canvas id="canvas" style="top: 0; left:  0;position: absolute;" height="750px" width="1575px">
+				<canvas id="canvas" style="top: 0; left:  0;position: absolute;" height="750" width="1575">
 				</canvas>
-				<img id="imageCarte" src="images/carte.png"/>
-				<img id="avion" src="images/avion.png"/>
+				<img id="imageCarte" src="images/carte.png" alt="carte"/>
+				<img id="avion" src="images/avion.png" alt="avion"/>
 			</div>
 			<div id="infoVol">
 				<div class="etiquettes">Ville de départ</div>
@@ -104,7 +103,7 @@ Frédéric Pitel, PITF16088608
 
 		<div id="equipage">
 			<div id="precedent"></div>
-			<div id="suivant">&#x25B6</div>
+			<div id="suivant">&#x25B6;</div>
 			<div id="fenetre">
 				<span class="membre"><img src="images/capitaine.jpg" alt="photo"/><span class="nom">CDB James T. Kirk</span></span>
 				<span class="membre"><img src="images/copilote.png" alt="photo"/><span class="nom">OPL Brian Brianti</span></span>

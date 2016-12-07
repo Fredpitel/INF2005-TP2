@@ -69,7 +69,7 @@ function initialiserCheckbox() {
 		listeCheckbox[i].removeEventListener("click", click, false);
 		listeCheckbox[i].addEventListener("click", click, false);
 
-		var index = listeCheckbox[i].getAttribute("index");
+		var index = listeCheckbox[i].getAttribute("data-index");
 		
 		if(depart != null && index === depart) {
 			listeCheckbox[i].checked = true;
@@ -133,7 +133,7 @@ function click() {
 }
 
 function notify(checkbox){
-	var index = checkbox.getAttribute("index");
+	var index = checkbox.getAttribute("data-index");
 
 	enleverItineraire();
 	if(checkbox.checked){
@@ -193,10 +193,10 @@ function mettreDepartAJour() {
 
 	if(depart === null){
 		for(var i = 0; i < aeroports.length; i++){
-			listeDepart.innerHTML += "<li><span>" + aeroports[i].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + i + "\"/></span></li>";
+			listeDepart.innerHTML += "<li><span>" + aeroports[i].ville + "<input type=\"checkbox\" class=\"checkbox\" data-index=\"" + i + "\"/></span></li>";
 		}
 	} else {
-		listeDepart.innerHTML = "<li><span>" + aeroports[depart].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + depart + "\"/></span></li>";
+		listeDepart.innerHTML = "<li><span>" + aeroports[depart].ville + "<input type=\"checkbox\" class=\"checkbox\" data-index=\"" + depart + "\"/></span></li>";
 	}
 }
 
@@ -210,11 +210,11 @@ function mettreArriveeAJour() {
 	} else if(arrivee === null) {
 		for(var i = 0; i < aeroports.length; i++){
 			if(i != depart){
-				listeArrivee.innerHTML += "<li><span>" + aeroports[i].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + i + "\"/></span></li>";
+				listeArrivee.innerHTML += "<li><span>" + aeroports[i].ville + "<input type=\"checkbox\" class=\"checkbox\" data-index=\"" + i + "\"/></span></li>";
 			}
 		}
 	} else {
-		listeArrivee.innerHTML = "<li><span>" + aeroports[arrivee].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + arrivee + "\"/></span></li>";
+		listeArrivee.innerHTML = "<li><span>" + aeroports[arrivee].ville + "<input type=\"checkbox\" class=\"checkbox\" data-index=\"" + arrivee + "\"/></span></li>";
 	}
 }
 
@@ -237,13 +237,13 @@ function mettreEscalesAJour() {
 		} else if(escalesChoisies.length === 3) {
 			for(var i = 0; i < escalesChoisies.length; i++) {
 				var index = escalesChoisies[i];
-		 		listeEscale.innerHTML += "<li><span>" + aeroports[index].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + index + "\"/></span></li>";
+		 		listeEscale.innerHTML += "<li><span>" + aeroports[index].ville + "<input type=\"checkbox\" class=\"checkbox\" data-index=\"" + index + "\"/></span></li>";
 		 	}
 		} else {
 			for(var i = 0; i < escalesDisponibles.length; i++) {
 				for(var j = 0; j < aeroports.length; j++) {
 					if(escalesDisponibles[i] === j){
-						listeEscale.innerHTML += "<li><span>" + aeroports[j].ville + "<input type=\"checkbox\" class=\"checkbox\" index=\"" + j + "\"/></span></li>";
+						listeEscale.innerHTML += "<li><span>" + aeroports[j].ville + "<input type=\"checkbox\" class=\"checkbox\" data-index=\"" + j + "\"/></span></li>";
 					}
 				}
 			}
@@ -514,7 +514,7 @@ function fenetreSuivant() {
 
 		// on a au moins une image suivante
 		var precedent = document.getElementById("precedent");
-		precedent.innerHTML = "&#x25C0";
+		precedent.innerHTML = "&#x25C0;";
 		precedent.style.background = "#555555";
 	}
 	deplacerFenetre();
@@ -534,7 +534,7 @@ function fenetrePrecedent() {
 
 		// on a au moins une image suivante
 		var suivant = document.getElementById("suivant");
-		suivant.innerHTML = "&#x25B6";
+		suivant.innerHTML = "&#x25B6;";
 		suivant.style.background = "#555555";
 	}
 	deplacerFenetre();

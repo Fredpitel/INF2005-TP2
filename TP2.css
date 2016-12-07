@@ -262,7 +262,7 @@ input[type=checkbox] {
 	height: 180px;
 	position: relative;
 	left: 50px;
-	transition: 1.0s all
+	transition: 0.7s all
 }
 
 #fenetre img {
