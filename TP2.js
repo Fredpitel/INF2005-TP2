@@ -495,7 +495,7 @@ function paramDeVol(pointDep, pointArr) {
  var fenetrePositionMax = 50;
  var fenetrePositionCourante = 50;
 
-function fenetrePrecedent() {
+function fenetreSuivant() {
 	if (fenetrePositionCourante - 154 <= fenetrePositionMin) {
 		fenetrePositionCourante = fenetrePositionMin;
 	} else {
@@ -504,7 +504,7 @@ function fenetrePrecedent() {
 	deplacerFenetre();
 }
 
-function fenetreSuivant() {
+function fenetrePrecedent() {
 	if (fenetrePositionCourante + 154 >= fenetrePositionMax) {
 		fenetrePositionCourante = fenetrePositionMax;
 	} else {
