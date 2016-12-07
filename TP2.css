@@ -236,6 +236,9 @@ input[type=checkbox] {
 	position: absolute;
 	cursor: pointer;
 	z-index: 100;
+	-webkit-user-select: none;       
+	-moz-user-select: none; 
+	-ms-user-select: none; 
 }
 
 #precedent:hover, #suivant:hover {
