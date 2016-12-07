@@ -217,23 +217,22 @@ input[type=checkbox] {
 }
 
 #equipage {
-	background: #A0A0A0;
+	background: #DDDDFF;
 	height: 180px;
 	width: 700px;
 	margin: 600px 0px 90px 80px;
-	position: absolute;
-	overflow: hidden;
+	position: relative;
 }
 
 .precedent, .suivant {
+	background:#555555;
 	margin: 0;
 	padding: 0;
 	height: 180px;
+	width: 50px;
 	font-size: 200%;
-	width: 45px;
-	background:#555555;
 	text-align: center;
-	line-height: 170px;
+	line-height: 180px;
 	position: absolute;
 	cursor: pointer;
 }
@@ -256,24 +255,27 @@ input[type=checkbox] {
 .fenetre {
 	width: 3840px;
 	height: 180px;
-	margin: 0px 45px 0px 45px;
-	//position: relative;
-}
-
-.fenetre a {
-	display: block;
-	float: left;
-	padding: 0 5px;
 }
 
 .fenetre img {
-	height: 150px;
-	border: solid 2px #333;
+	max-height: 150px;
+	width: 150px;
+
 }
 
-.fenetre a:hover img, a.courant img{
-	border: solid 3px #000;
+.membre {
+	float: left;
+	//padding: 0 2px;
+	width: 150px;
+	height: 176px;
+	text-align: center;
+	border: 2px solid black;
 }
+
+.nom {
+	display: block;
+}
+
 
 .flottante {
 	border: solid 3px;
@@ -282,7 +284,7 @@ input[type=checkbox] {
 	max-height: 480px;
 	max-width: 720px;
 	float: right;
-}
+} 
 
 .description {
 	margin-left: 30px;
