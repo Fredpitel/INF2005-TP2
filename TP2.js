@@ -1,3 +1,8 @@
+/*
+Francis Beaudoin, BEAF21069107
+Frédéric Pitel, PITF16088608
+*/
+
 var aeroports = [
 	{ville: "Calgary", l: 380, t: 380},
 	{ville: "Halifax", l: 1440, t: 450},
